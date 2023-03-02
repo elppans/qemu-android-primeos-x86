@@ -64,7 +64,7 @@ Se não quiser que seu Android use um arquivo **data.img**, crie uma pasta com o
 
 > DATA="$HOME/.config/android-x86/PrimeOS/data  
 
-Faça estes comandos para criar o necessário para executar o PrimeOS no QEMU:
+Faça estes comandos para criar o necessário para executar o PrimeOS no QEMU:  
 
 ```
 mkdir -p ~/.config/android-x86/PrimeOS
@@ -78,7 +78,7 @@ chmod +x qemu-android-primeos
 truncate -s 2048K ramdisk.img
 ```
 
-Para testar, faça o comando:
+Para testar, faça o comando:  
 
 ```
 $HOME/.config/android-x86/PrimeOS/qemu-android-primeos gui
