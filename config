@@ -1,0 +1,96 @@
+# RAM in megabytes, defaults to 2048.
+RAM=3072
+
+# Number of CPU cores, defaults to 2.
+#CORES=2
+
+# CPU definition, defaults to "host"
+# Default Example:
+#CPU="host"
+# Test with old CPU:
+#CPU="core2duo"
+
+# "video=" string to pass to the kernel. Defaults to no string set.
+#VIDEO="1280x720x32"
+
+# Data partition location.
+# If a file is specified it will be a raw image and created if it does not
+# exist.  By default, it will create a file at $HOME/.config/android-x86/data.img
+# as a sparse file with an EXT4 filesystem.
+# If a directory is specified, it'll be mounted as a 9p share.  QEMU must run under
+# sudo and will pop a terminal if run graphically.
+# If set to "none", no data partition will be set.
+# Example:
+#DATA="none" # Save no data
+#DATA="/tmp/data.img" # Create a data file in /tmp. 
+#DATA="$HOME/.config/android-x86/PrimeOS/data" # Use data dir in HOME.
+
+# Data partition size in megabytes.  Only used on creation of a partition image.
+# defaults to 2048.
+DATASIZE=61440
+
+# Note: right now the only thing that's working right now with VirGL on machines tested
+# is SDL with an external serial0.   GTK shows the serial but no video, SDL shows
+# the windows all overlayed with each other.
+
+# Serial output.  Currently a rootshell.  Defaults to no serial.
+#
+# Examples:
+# default stdio, will pop a terminal in graphical mode
+SERIAL="mon:stdio" # console on terminal or in urxvt if gui mode.
+#SERIAL="telnet:127.0.0.1:9000,server,nowait"  # telnet to port 900 for root, might be insecure
+
+# Bridged networking.  
+#
+# If you use a bridged network for vitual machines, you can set it here.
+# Otherwise it uses user networking.  Make sure to allow the bridge in /etc/qemu/bridge.conf
+#BRIDGE=outer0
+
+# Method to launch QEMU.  Example is default, which uses SDL and allow for
+# VirGL, which is a feature as of 8.1-r1.  For some reason GTK isn't working on all
+# the tested machines, only SDL.
+# Example (default):
+#VGALINE="-vga virtio -display sdl,gl=on"
+
+# Custom for r/w system images:
+SYSTEMIMG="$HOME/.config/android-x86/PrimeOS/system.sfs"
+INITRD="$HOME/.config/android-x86/PrimeOS/initrd.img"
+RAMDISK="$HOME/.config/android-x86/PrimeOS/ramdisk.img"
+KERNEL="$HOME/.config/android-x86/PrimeOS/kernel"
+
+## PrimeOS testados:
+
+#Classic (x86): Google logou normalmente
+
+#0.5.5 - Usa Android 7.1, sem lag. 
+#Na tela de login, aparece mensagem sobre Software quebrado, mas dá pra usar normalmente.
+#Link: https://sourceforge.net/projects/primeos/files/Classic/primeOS-classic_0.5.5-20211112.iso
+
+#0.6.0 - Usa Android 7.1, sem lag, sem erro na tela de login. 
+#Após login no GPlay pode aparecer uma mensagem dizendo que algo deu errado, mas é só prosseguir que tá OK
+#Link: https://sourceforge.net/projects/primeos/files/Classic/primeOS-classic_0.6.0-20211123.iso
+
+#0.6.1 - Usa Android 7.1, sem lag, sem erro na tela de login.
+#Link: https://sourceforge.net/projects/primeos/files/Classic/primeOS-classic_0.6.1-20211206.iso
+
+#Standard (x86_64):
+#TODAS - Sem lag, mas o Google Play fica travado na tela de "Verificando Dados"
+# Após logar o GPlay através do Classic e atualizar para Standard, o GPlay funciona, 
+# porém, fica saindo a todo instante e não dá pra usar
+
+#Versão com Android 11 (2.1.x):
+
+# Criar arquivo ramdisk.img:
+# truncate -s 2048K ramdisk.img
+
+# 2.1.3 - Não faz o boot
+# https://sourceforge.net/projects/primeos/files/64-bit/PrimeOS-2.1.3-64-bit-20220719-BETA.iso
+
+# 2.1.2 - Não faz o boot
+# https://sourceforge.net/projects/primeos/files/64-bit/PrimeOS-2.1.2-64-bit-20220531-BETA.iso
+
+# 2.1.0 - Não faz o boot
+# https://sourceforge.net/projects/primeos/files/64-bit/PrimeOS-2.1.0-64-bit-20220223-BETA.iso
+
+# 2.0.1 - Faz o boot normal
+#https://sourceforge.net/projects/primeos/files/64-bit/PrimeOS-2.0.1-64-bit-20220102-BETA.iso
