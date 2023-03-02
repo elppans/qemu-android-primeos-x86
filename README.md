@@ -1,5 +1,11 @@
 # qemu-android-primeos-x86 no Archlinux
 
+## Configurando [PrimeOS](https://www.primeos.in/) com [qemu-android-cm-x86](https://aur.archlinux.org/packages/qemu-android-cm-x86):
+
+Esta configuração depende do pacote [qemu-android-cm-x86](https://aur.archlinux.org/packages/qemu-android-cm-x86)  
+Será baixado o arquivo ISO do site oficial e será descompactado em uma pasta específica.  
+Para descompactar um arquivo ISO sem ter que montá-lo, deve ter o pacote [p7zip](https://archlinux.org/packages/extra/x86_64/p7zip/) instalado.  
+
 ### Versões do [PrimeOS](https://www.primeos.in/)
 
 * Classic = Computadores antigos usa kernel x86
@@ -50,8 +56,6 @@ Talvez a base dele seja como o Standard
 
 ## Configurando o PrimeOS 2.0.1 para ser usado no QEMU, no Archlinux
 
-Para funcionar, deve estar instalado o pacote [qemu-android-cm-x86 (AUR)](https://aur.archlinux.org/packages/qemu-android-cm-x86).  
-Será baixado o arquivo ISO do site oficial e será descompactado em uma pasta específica. Para descompactar um arquivo ISO sem ter que montá-lo, deve ter o pacote [p7zip](https://archlinux.org/packages/extra/x86_64/p7zip/) instalado.  
 O Script e o arquivo **config** estão configurados para usar a pasta `~/.config/android-x86/PrimeOS`, então deverá criar esta pasta antes de tudo.  
 O arquivo **config** está configurado para usar 3 GB de RAM na Máquina Virtual, para modificar, edite e vá até a variável `RAM`  
 Assim como toda **ISO Android OS versão 11** o **PrimeOS 2.0.1** NÃO tem o arquivo `ramdisk.img`, então também deve criar, ou o boot não funcionará.  
