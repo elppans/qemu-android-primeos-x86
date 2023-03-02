@@ -96,3 +96,5 @@ Icon=qemu-android.png
 Type=Application
 Categories=Development;
 ```
+
+Após a configuração, basta clicar no ícone que aparecerá em seu menú.  
