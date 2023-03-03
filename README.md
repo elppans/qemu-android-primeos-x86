@@ -68,6 +68,11 @@ Se não quiser que seu Android use um arquivo **data.img**, crie uma pasta com o
 
 > DATA="$HOME/.config/android-x86/PrimeOS/data  
 
+Se for configurado a pasta `data` para ser usado no lugar de `data.img`, será usado o parâmetro `9p mode` para montar esta pasta como um dispositivo no Android, com isso o QEMU será executado com sudo ao iniciar o Script.  
+Se não quiser digitar a senha do sudo toda vez que executar o qemu-android, edite o arquivo `/etc/sudoers` e adicione esta linha:  
+
+> %wheel ALL=(ALL) NOPASSWD: /usr/bin/qemu-system-x86_64
+
 Faça estes comandos para criar o necessário para executar o PrimeOS no QEMU:  
 
 ```
@@ -94,11 +99,16 @@ Se quiser criar um atalho **.desktop** para o comando, crie um arquivo em `~/.lo
 [Desktop Entry]
 Name=qemu-android-primeos
 Comment=Android-x86 environment via QEMU and VirGL
-Exec=$HOME/.config/android-x86/PrimeOS/qemu-android-primeos gui
+Exec=/usr/bin/qemu-android-primeos gui
 Terminal=false
 Icon=qemu-android.png
 Type=Application
 Categories=Development;
+```
+Crie um link OU copie o Script para /usr/bin, para que seja executado (Eu prefiro fazer o link):  
+
+```
+ln -sf $HOME/.config/android-x86/PrimeOS/qemu-android-primeos /usr/bin/qemu-android-primeos
 ```
 
 Após a configuração, basta clicar no ícone que aparecerá em seu menú.  
