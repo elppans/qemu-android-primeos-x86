@@ -74,7 +74,9 @@ if [ $DATA == "none" ]; then
 elif [ -d $DATA ]; then
 	echo "9p mode selected."
 	IN_SUDO=1
-	DATA_QEMULINE="-virtfs local,id=data,path=${DATA},security_model=passthrough,mount_tag=data"
+	#DATA_QEMULINE="-virtfs local,id=data,path=${DATA},security_model=passthrough,mount_tag=data"
+	DATA_QEMULINE="-fsdev local,id=data,path=${DATA},security_model=passthrough -device virtio-9p-pci,fsdev=data,mount_tag=data -enable-kvm"
+	# In QEMU emulator version 7.2.0, option '-virtfs' modified to '-fsdev'. See https://wiki.qemu.org/Documentation/9psetup#msize
 	DATA_CMDLINE="DATA=9p"
 else
 	# sudo should only be needed for 9p, if KVM is set up right
@@ -147,8 +149,8 @@ do_qemu() {
 	-device qemu-xhci,id=xhci0 -device usb-tablet,bus=xhci0.0 -machine vmport=off \
 	-device intel-hda -device hda-duplex \
 	-boot menu=on \
-	-drive index=0,if=virtio,id=system,file=$SYSTEMIMG,format=raw,readonly \
-	-drive index=1,if=virtio,id=ramdisk,file=$RAMDISK,format=raw,readonly \
+	-drive index=0,if=virtio,id=system,file=$SYSTEMIMG,format=raw,readonly=on \
+	-drive index=1,if=virtio,id=ramdisk,file=$RAMDISK,format=raw,readonly=on \
 	$NET_QEMULINE $DATA_QEMULINE $SERIAL_QEMULINE $VGALINE
 }
 
@@ -156,3 +158,5 @@ while [ $NETPORT -lt 48000 ]; do
 	do_qemu && break
 	let $NETPORT++
 done
+
+# In QEMU emulator version 7.2.0, option 'readonly' deprecated, updated for readonly=on
