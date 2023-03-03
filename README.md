@@ -5,6 +5,7 @@
 Esta configuração depende do pacote [qemu-android-cm-x86](https://aur.archlinux.org/packages/qemu-android-cm-x86)  
 Será baixado o arquivo ISO do site oficial e será descompactado em uma pasta específica.  
 Para descompactar um arquivo ISO sem ter que montá-lo, deve ter o pacote [p7zip](https://archlinux.org/packages/extra/x86_64/p7zip/) instalado.  
+Foi utilizado o [QEMU versão 7.2.0-3](https://archlinux.org/packages/?sort=&q=qemu-system-x86) para a execução e testes do Android OS.  
 
 ### Versões do [PrimeOS](https://www.primeos.in/)
 
